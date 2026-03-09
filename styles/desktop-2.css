@@ -13,7 +13,7 @@ input {
 	border: none;
 }
 body {
-  width: 136rem;
+  width: 100%;
 }.desktop-2-qgG {
   width: 100%;
   overflow: hidden;
@@ -370,7 +370,7 @@ body {
   flex-shrink: 0;
 }
 .desktop-2-qgG .footer-n1i {
-  width: 137.6rem;
+  width: 100%;
   height: 16.5rem;
   text-align: center;
   font-size: 3rem;
@@ -384,4 +384,48 @@ body {
   justify-content: center;
   background-color: #e7c9f1;
   flex-shrink: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .desktop-2-qgG .auto-group-zccc-jWk .navbar-1z4 .image-2-XhW {
+    margin-right: 0;
+    width: 14rem;
+  }
+  .desktop-2-qgG .auto-group-zccc-jWk {
+    padding: 3rem 3rem 8rem;
+  }
+  .desktop-2-qgG .auto-group-zccc-jWk .frame-2-dGg {
+    width: 100%;
+    margin-left: 0;
+  }
+  .desktop-2-qgG .auto-group-zccc-jWk .frame-2-dGg .auto-group-nuvq-vWg,
+  .desktop-2-qgG .auto-group-zccc-jWk .frame-2-dGg .auto-group-m59w-aU4 {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .desktop-2-qgG .auto-group-zccc-jWk .frame-2-dGg .auto-group-m59w-aU4 {
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  html { font-size: 50%; }
+  .desktop-2-qgG .auto-group-zccc-jWk .navbar-1z4 {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+  .desktop-2-qgG .auto-group-zccc-jWk .navbar-1z4 .group-18-GQC {
+    column-gap: 3rem;
+  }
+  .desktop-2-qgG .auto-group-zccc-jWk .our-teams-Znc {
+    margin: 0 0 5rem;
+    font-size: 5rem;
+  }
 }

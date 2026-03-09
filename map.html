@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link
@@ -25,11 +22,16 @@
     <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css" />
     <link rel="stylesheet" href="css/leaflet-measure.css" />
     <style>
-      html,
-      body,
+      html, body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
       #map {
         width: 100%;
-        height: 97%;
+        height: calc(100vh - 70px);
         padding: 0;
         margin: 0;
       }
@@ -80,6 +82,99 @@
         margin-right: 100px;
       }
 
+      /* ─── Responsive Navbar ─── */
+      @media (max-width: 640px) {
+        .nav-saya {
+          height: auto;
+          flex-wrap: wrap;
+          padding: 8px 12px;
+          gap: 6px;
+        }
+        .bungkus-gambar {
+          margin-left: 0;
+          width: 30%;
+        }
+        .grup-1 {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 4px;
+          padding-bottom: 6px;
+        }
+        .menu {
+          margin-right: 0;
+          font-size: 14px;
+          padding: 4px 10px;
+        }
+        .lastin {
+          margin-right: 0;
+        }
+        #map {
+          height: calc(100vh - 110px);
+        }
+      }
+
+      /* ─── Popup Styling ─── */
+      .popup-card {
+        font-family: 'Nunito Sans', 'Source Sans Pro', sans-serif;
+        font-size: 13px;
+        min-width: 230px;
+        max-width: 280px;
+      }
+      .popup-header {
+        background: linear-gradient(135deg, #69088a, #270d30);
+        color: #fff;
+        padding: 10px 14px 8px;
+        border-radius: 10px 10px 0 0;
+      }
+      .popup-header h3 {
+        margin: 0 0 2px;
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1.3;
+      }
+      .popup-header small {
+        opacity: 0.8;
+        font-size: 11px;
+      }
+      .popup-body {
+        padding: 10px 14px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .popup-body .row {
+        display: flex;
+        gap: 6px;
+        align-items: flex-start;
+      }
+      .popup-body .label {
+        color: #69088a;
+        font-weight: 700;
+        white-space: nowrap;
+        min-width: 90px;
+      }
+      .popup-body .val {
+        color: #333;
+      }
+      .popup-photo {
+        width: 100%;
+        max-height: 140px;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-top: 6px;
+        border: 2px solid #e6d0f0;
+      }
+      .popup-badge {
+        display: inline-block;
+        background: #f3e8ff;
+        color: #69088a;
+        border-radius: 20px;
+        padding: 2px 10px;
+        font-size: 11px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
     </style>
     <title>Tugas Akhir Sistem Informasi Geografis - (Kelompok 3)</title>
   </head>
@@ -88,7 +183,7 @@
     <div class="nav-saya">
       <div class="bungkus-gambar">
         <a href="index.html">
-          <img class="image-2-eUL" src="./assets/image 2.png" alt="Logo" />
+          <img class="image-2-eUL" src="./assets/image-2.png" alt="Logo UNPAK" />
         </a>
       </div>
       <div class="grup-1">
@@ -150,10 +245,10 @@
       L.control.locate({ locateOptions: { maxZoom: 19 } }).addTo(map);
       var measureControl = new L.Control.Measure({
         position: "topleft",
-        primaryLengthUnit: "feet",
-        secondaryLengthUnit: "miles",
-        primaryAreaUnit: "sqfeet",
-        secondaryAreaUnit: "sqmiles",
+        primaryLengthUnit: "meters",
+        secondaryLengthUnit: "kilometers",
+        primaryAreaUnit: "sqmeters",
+        secondaryAreaUnit: "hectares",
       });
       measureControl.addTo(map);
       document.getElementsByClassName(
@@ -180,90 +275,52 @@
       );
       layer_OpenStreetMap_0;
       map.addLayer(layer_OpenStreetMap_0);
+
+      function escHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
       function pop_responden_1(feature, layer) {
         layer.on({
           mouseout: function (e) {
-            for (i in e.target._eventParents) {
-              e.target._eventParents[i].resetStyle(e.target);
+            for (var k in e.target._eventParents) {
+              e.target._eventParents[k].resetStyle(e.target);
             }
           },
           mouseover: highlightFeature,
         });
+        var p = feature.properties;
+        var fotoFile = p['foto'] ? p['foto'].split(/[\/\\]/).pop() : null;
+        var fotoHtml = fotoFile
+          ? '<img src="images/' + escHtml(fotoFile) + '" class="popup-photo"'
+            + ' alt="Foto ' + escHtml(p['nama_tempat']) + '"'
+            + ' onerror="this.style.display=\'none\'">'
+          : '';
         var popupContent =
-          '<table>\
-                    <tr>\
-                        <td colspan="2">' +
-          (feature.properties["id"] !== null
-            ? autolinker.link(feature.properties["id"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>nama_reponden</strong><br />' +
-          (feature.properties["nama_reponden"] !== null
-            ? autolinker.link(
-                feature.properties["nama_reponden"].toLocaleString()
-              )
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>nama_tempat</strong><br />' +
-          (feature.properties["nama_tempat"] !== null
-            ? autolinker.link(
-                feature.properties["nama_tempat"].toLocaleString()
-              )
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">deskripsi</th>\
-                        <td>' +
-          (feature.properties["deskripsi"] !== null
-            ? autolinker.link(feature.properties["deskripsi"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>tanggal_survey</strong><br />' +
-          (feature.properties["tanggal_survey"] !== null
-            ? autolinker.link(
-                feature.properties["tanggal_survey"].toLocaleString()
-              )
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>cocok_untuk</strong><br />' +
-          (feature.properties["cocok_untuk"] !== null
-            ? autolinker.link(
-                feature.properties["cocok_untuk"].toLocaleString()
-              )
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">luas(m2)</th>\
-                        <td>' +
-          (feature.properties["luas(m2)"] !== null
-            ? autolinker.link(feature.properties["luas(m2)"].toLocaleString())
-            : "") +
-          '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">foto</th>\
-                        <td>' +
-          (feature.properties["foto"] !== null
-            ? '<img src="images/' +
-              String(feature.properties["foto"])
-                .replace(/[\\\/:]/g, "_")
-                .trim() +
-              '">'
-            : "") +
-          "</td>\
-                    </tr>\
-                </table>";
-        layer.bindPopup(popupContent, { maxHeight: 400 });
+          '<div class="popup-card">'
+          + '<div class="popup-header">'
+          +   '<h3>' + escHtml(p['nama_tempat']) + '</h3>'
+          +   '<small>&#128100; Surveyor: ' + escHtml(p['nama_reponden']) + '</small>'
+          + '</div>'
+          + '<div class="popup-body">'
+          + (p['deskripsi']
+              ? '<div class="row"><span class="label">&#128203; Deskripsi</span>'
+                + '<span class="val">' + escHtml(p['deskripsi']) + '</span></div>' : '')
+          + (p['cocok_untuk']
+              ? '<div class="row"><span class="label">&#9989; Cocok untuk</span>'
+                + '<span class="val"><span class="popup-badge">' + escHtml(p['cocok_untuk']) + '</span></span></div>' : '')
+          + (p['luas(m2)']
+              ? '<div class="row"><span class="label">&#128207; Luas</span>'
+                + '<span class="val">' + escHtml(p['luas(m2)']) + ' m\u00b2</span></div>' : '')
+          + (p['tanggal_survey']
+              ? '<div class="row"><span class="label">&#128197; Tanggal</span>'
+                + '<span class="val">' + escHtml(p['tanggal_survey']) + '</span></div>' : '')
+          + fotoHtml
+          + '</div></div>';
+        layer.bindPopup(popupContent, { maxWidth: 300, className: 'custom-popup' });
       }
 
       function style_responden_1_0() {

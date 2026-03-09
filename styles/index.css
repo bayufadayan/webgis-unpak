@@ -1257,3 +1257,86 @@ body {
   background-color: #e7c9f1;
   flex-shrink: 0;
 }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .index-weU .auto-group-arsr-aBe .navbar-A3N .group-18-yFi {
+    margin: 2.3rem 5rem;
+    column-gap: 4rem;
+  }
+  .index-weU .auto-group-arsr-aBe .fiest-CXn .illustasi-BVW {
+    width: 50rem;
+    height: 50rem;
+    right: 4rem;
+  }
+  .index-weU .auto-group-arsr-aBe .fiest-CXn .illustasi-BVW .container-vCC,
+  .index-weU .auto-group-arsr-aBe .fiest-CXn .illustasi-BVW .container-PrU {
+    width: 50rem;
+    height: 50rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .index-weU .auto-group-arsr-aBe .navbar-A3N .group-18-yFi {
+    margin: 1rem 2rem;
+    column-gap: 3rem;
+  }
+  .index-weU .auto-group-arsr-aBe .navbar-A3N .group-18-yFi .home-JHz,
+  .index-weU .auto-group-arsr-aBe .navbar-A3N .group-18-yFi .map-CeG,
+  .index-weU .auto-group-arsr-aBe .navbar-A3N .group-18-yFi .about-wrk {
+    font-size: 3rem;
+  }
+  .index-weU .auto-group-arsr-aBe .fiest-CXn .illustasi-BVW {
+    display: none;
+  }
+  .index-weU .auto-group-arsr-aBe .fiest-CXn .sistem-informasi-geografis-peta-unpak-W8U {
+    font-size: 7rem;
+    width: 90%;
+  }
+  .index-weU .auto-group-arsr-aBe .fiest-CXn .kelompok-3-7ue {
+    width: 50%;
+  }
+  .index-weU
+    .auto-group-arsr-aBe
+    .fiest-CXn
+    .sistem-informasi-geografis-sig-yang-telah-kami-rancang-mencakup-lokasi-lokasi-penting-seperti-bank-bni-gedung-fakultas-hukum-taman-vokasi-area-parkir-gps-dan-gedung-graha-pakuan-siliwangi-implementasi-sig-ini-bertujuan-untuk-memberikan-kontribusi-yang-berharga-dalam-memperluas-wawasan-serta-pemetaan-universitas-pakuan-unpak-kBv {
+    width: 90%;
+  }
+  .asal-ah {
+    width: 60%;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .index-weU .auto-group-arsr-aBe .fiest-CXn .go-map-hFa {
+    width: 100%;
+  }
+  .index-weU .auto-group-arsr-aBe .fiest-CXn .about-SuJ {
+    width: 100%;
+  }
+  .index-weU .lokasi-survey-T5e .frame-2-UFe .auto-group-vang-cMr,
+  .index-weU .lokasi-survey-T5e .frame-2-UFe .auto-group-4ax6-YEp {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 28%; }
+  .index-weU .auto-group-arsr-aBe .navbar-A3N {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 2rem 0;
+    gap: 1rem;
+  }
+  .index-weU .auto-group-arsr-aBe .navbar-A3N .image-2-eUL {
+    margin-left: 2rem;
+  }
+  .index-weU .auto-group-arsr-aBe .navbar-A3N .group-18-yFi {
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+    column-gap: 4rem;
+  }
+}
